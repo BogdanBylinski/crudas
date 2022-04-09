@@ -16,6 +16,7 @@ function App() {
     const [paspirtukai, setPaspirtukai] = useState([]);
     const [modal, setModal] = useState(0)
     const [sort, setSort]= useState([])
+    
 
 
     useEffect(()=>{
@@ -113,7 +114,6 @@ function App() {
       setPaspirtukai(paspirtukai=>[...paspirtukai].sort((a,b)=> a.lastUseTime.localeCompare(b.lastUseTime)))
       console.log(paspirtukai);
     }
-
 
 
   return (

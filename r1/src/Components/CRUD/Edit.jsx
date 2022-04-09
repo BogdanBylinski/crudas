@@ -6,7 +6,7 @@ function Edit({edit, paspirtukas, cancel, }){
     
     const [type, setType]=useState('');
     const [km, setKM]=useState('');
-    const [bendrasKM, setBendrasKM]=useState(0);
+    const [bendrasKM, setBendrasKM]=useState('');
     const [isAlive, setIsAlive]=useState(1);
     const [lastUseTime, setLastUseTime]=useState('brand new')
     const [date, setDate]=useState('')
@@ -30,6 +30,7 @@ function Edit({edit, paspirtukas, cancel, }){
             km:km
             
         }
+        
         edit(data)
         setType('');
         setIsAlive(1);
@@ -44,15 +45,15 @@ function Edit({edit, paspirtukas, cancel, }){
         switch(d){
             case 'KM':
                 
-                setKM(e.target.value);
+                       setKM(e.target.value)
                 break;
-            case 'Last use time?':
-                setDate(e.target.value);
-                setLastUseTime(e.target.value);
-                console.log(date);
-                break;
-            case 'isAlive':
-                setIsAlive(i => i === 0 ? 1 : 0);
+                case 'Last use time?':
+                    setDate(e.target.value);
+                    setLastUseTime(e.target.value);
+                    console.log(date);
+                    break;
+                    case 'isAlive':
+                        setIsAlive(i => i === 0 ? 1 : 0);
 
                 break;
             default:
@@ -73,12 +74,12 @@ function Edit({edit, paspirtukas, cancel, }){
             <div className="form">
             <div className="input">
                 <label htmlFor="">KM: </label>
-                <input  onChange={(e)=>handleInput(e,'KM')} value={km} type="text" placeholder="nuvaziuotas km kiekis" />
+                <input  onChange={(e)=>Number(e.target.value)? handleInput(e,'KM'):''} value={km} type="text" placeholder="nuvaziuotas km kiekis" />
                 
             </div>
             <div className="input">
                 <label htmlFor="">Last use time:</label>
-                <input onChange={(e)=>handleInput(e,'Last use time?')} type="date" name="" id="" value={date} />
+                <input  onChange={(e)=>handleInput(e,'Last use time?')} type="date" name="" id="" value={date} />
                 {/* <select defaultValue={color}onChange={(e)=>handleInput(e,'color')} name="" id="">
                     <option value="selected" >Select color</option>
                     <option value="blue">Blue</option>
@@ -89,8 +90,8 @@ function Edit({edit, paspirtukas, cancel, }){
                 </select> */}
             </div>
             <div className="input">
-                <label htmlFor="">Uzimtumas</label>
-                <input type="checkbox"  checked={isAlive} onChange={(e)=>handleInput(e,'isAlive')} />
+                <label  htmlFor="">Uzimtumas</label>
+                <input className="toggle" type="checkbox"  checked={isAlive} onChange={(e)=>handleInput(e,'isAlive')} />
             </div>
             <div className="input btn">
                 <button  onClick={handleEdit}>Edit</button>

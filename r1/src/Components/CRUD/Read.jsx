@@ -6,20 +6,23 @@ import { faPenToSquare} from '@fortawesome/free-regular-svg-icons'
 import "./Table.scss";
 import { useEffect, useState } from "react";
 export default function Read({paspirtukai, deleteA,show}){
-    // console.log(Object.keys(paspirtukai[0]));
-const [suma, setSuma]=useState(0)
+    const [suma, setSuma]=useState(0)
 const handleDelete=(id)=>{
     deleteA(parseInt(id));
 }
 useEffect(()=>{
 
         let sums =0
-        paspirtukai.forEach(e=>{
-            sums = e.bendrasKM+sums
-            setSuma(suma=>sums)
-        })
+        if(paspirtukai.length!==0){
+
+            paspirtukai.forEach(e=>{
+                sums = e.bendrasKM+sums
+                setSuma(suma=>sums)
+            })
+        }else{setSuma(0)}
     
 })
+
     return (
         <div className="list" >
             {/* <h2>List</h2> */}
