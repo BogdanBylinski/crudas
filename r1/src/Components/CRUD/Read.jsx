@@ -50,7 +50,7 @@ useEffect(()=>{
                                            <span className="edit" onClick={()=>show(e.id)}><FontAwesomeIcon  icon={faPenToSquare} /></span><span onClick={()=>handleDelete(e.id)} className="delete"><FontAwesomeIcon  icon={faTrashCan} /></span></p></td>
                                          
                                     </tr>  )}
-                                    <tr className="lastRow">
+                                    <tr id="lastRow">
                                         <td></td>
                                         <td></td>
                                         <td></td>
