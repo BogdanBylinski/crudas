@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { useState } from "react"
+import { useState } from "react";
 
 function Edit({edit, paspirtukas, cancel, }){
 
     
     const [type, setType]=useState('');
     const [km, setKM]=useState('');
-    const [bendrasKM, setBendrasKM]=useState('');
+    const [bendrasKM, setBendrasKM]=useState('')
     const [isAlive, setIsAlive]=useState(1);
     const [lastUseTime, setLastUseTime]=useState('brand new')
     const [date, setDate]=useState('')
+    const [memo, setMemo]=useState(0)
 
 
     useEffect(()=>{
@@ -69,12 +70,12 @@ function Edit({edit, paspirtukas, cancel, }){
     return (
         <div className="modal">
 
-        <div className="edit">
+        <div className="editas">
             <h2>Create</h2>
             <div className="form">
             <div className="input">
                 <label htmlFor="">KM: </label>
-                <input  onChange={(e)=>Number(e.target.value)? handleInput(e,'KM'):''} value={km} type="text" placeholder="nuvaziuotas km kiekis" />
+                <input  onChange={(e)=>Number(e.target.value)? handleInput(e,'KM'):''} value={km} type="text"  placeholder="0.00" />
                 
             </div>
             <div className="input">
@@ -89,13 +90,13 @@ function Edit({edit, paspirtukas, cancel, }){
                     <option value="yellow">Yellow</option>
                 </select> */}
             </div>
-            <div className="input">
-                <label  htmlFor="">Uzimtumas</label>
+            <div className="input freeOrNot">
+                <label  htmlFor="">Uzimtumas: {isAlive===1? 'Uzimtas':'Laisvas'}</label>
                 <input className="toggle" type="checkbox"  checked={isAlive} onChange={(e)=>handleInput(e,'isAlive')} />
             </div>
             <div className="input btn">
-                <button  onClick={handleEdit}>Edit</button>
-                <button  onClick={handleCancel}>Cancel</button>
+                <button className="yes" onClick={handleEdit}>Edit</button>
+                <button  className='no'onClick={handleCancel}>Cancel</button>
             </div>
 
 

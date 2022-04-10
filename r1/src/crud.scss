@@ -278,6 +278,7 @@ body{
             }
             .list{
                 width: 100%;
+                
             }
             .bottom{
                 height: 100px;
@@ -376,7 +377,67 @@ body{
         display: flex;
         align-items: center;
         justify-content: center;
-        
+        .editas{
+            color: white;
+            border-radius: 20px;
+            width: 400px;
+            height: 400px;
+            background:linear-gradient(to right, #2980b9, #2c3e50);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .form{
+                display: flex;
+                flex-direction: column;
+                color:  white;
+                width: 80%;
+                height: 100%;
+                justify-content: space-evenly;
+                .input{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                .freeOrNot{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-between;
+                    .toggle {
+                       
+                    }
+                }
+                & .btn {
+                    display: flex;
+                    justify-content: space-evenly;
+                }
+                button{
+                    
+                        // background: linear-gradient(to right, #2980b9, #3f5b77);
+                        color: white;
+                        border: 3px solid white;
+                        width: 100px;
+                        height: 40px;
+                        border-radius: 50px;
+                        font-weight: bold;
+                        font-size: 15px;
+                        outline: none;
+                        // border: none;
+                        cursor: pointer;
+                        letter-spacing: 1px;
+                        margin: 5px;
+                        margin-left: 0px;
+                        text-transform: uppercase;
+                        &.yes{
+                            color: green;
+                        }
+                        &.no{
+                            color: red;
+                        }
+                }
+            }
+        }
 }
 
   

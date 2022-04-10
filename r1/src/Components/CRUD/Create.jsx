@@ -69,7 +69,7 @@ function Create({create}){
                 <input type="checkbox"  defaultChecked={isAlive}  onChange={(e)=>handleInput(e,'isAlive')} />
             </div> */}
             <div className="input btn">
-                <button onClick={handleCreate}>Create</button>
+                <button onClick={handleCreate}>Naujas</button>
             </div>
 
 

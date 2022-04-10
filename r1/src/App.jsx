@@ -14,9 +14,12 @@ import randLetters from './StaticComponents/randLetters';
 function App() {
   
     const [paspirtukai, setPaspirtukai] = useState([]);
+    const [paspirtukaiCopy, setPaspirtukaiCopy] = useState([]);
     const [modal, setModal] = useState(0)
     const [sort, setSort]= useState([])
     const [filter, setFilter] = useState('')
+    const [toggle, setToggle]= useState('default')
+    const [toggle2, setToggle2]= useState('default')
     
 
 
@@ -25,8 +28,11 @@ function App() {
       if (data===null){
         localStorage.setItem('paspirtukai',JSON.stringify([]))
         setPaspirtukai([]);
+        localStorage.setItem('paspirtukaiCopy',JSON.stringify([]))
+        setPaspirtukaiCopy([]);
       }else{
         setPaspirtukai(JSON.parse(data))
+        setPaspirtukaiCopy(JSON.parse(data))
       }
     },[])
     useEffect(()=>{
@@ -46,8 +52,10 @@ function App() {
         //local storage
         const newData = [...paspirtukai, paspirtukas];
         localStorage.setItem('paspirtukai',JSON.stringify(newData))
+        localStorage.setItem('paspirtukaiCopy',JSON.stringify(newData))
         //
         setPaspirtukai(paspirtukai=> [...paspirtukai, paspirtukas]);
+        setPaspirtukaiCopy(paspirtukai=> [...paspirtukai, paspirtukas]);
       
       
 
@@ -56,9 +64,11 @@ function App() {
       //local storage
       const newData = paspirtukai.filter(a=>a.id!== id);
       localStorage.setItem('paspirtukai',JSON.stringify(newData))
+      localStorage.setItem('paspirtukaiCopy',JSON.stringify(newData))
       //
       setPaspirtukai(paspirtukai=> paspirtukai.filter(a=>a.id!== id));
-
+      setPaspirtukaiCopy(paspirtukai=> paspirtukai.filter(a=>a.id!== id));
+      
     }
     const cancel =()=>{
       setModal(0)
@@ -83,6 +93,7 @@ function App() {
           }
         });
         localStorage.setItem('paspirtukai',JSON.stringify(zooCopy))
+        localStorage.setItem('paspirtukaiCopy',JSON.stringify(zooCopy))
        
         //
         setPaspirtukai(z1=>{
@@ -97,9 +108,66 @@ function App() {
           }})
           return z1
         })
+        setPaspirtukaiCopy(z1=>{
+          zooCopy.forEach((z, i)=>{
+          if(z.id === modal){
+              // z1[i].registrationCode= data.registrationCode;
+              z1[i].bendrasKM=(data.bendrasKM + +data.km)
+              z1[i].isAlive=data.isAlive
+              z1[i].lastUseTime=data.lastUseTime
+
+
+          }})
+          return z1
+        })
         cancel();
     }
+    const handleToggle=()=>{
+      let copy = [...paspirtukaiCopy]
 
+      if(toggle==='default'){
+        setPaspirtukai(paspirtukai=>[...paspirtukai].sort((a,b)=> b.lastUseTime.localeCompare(a.lastUseTime)))
+        setToggle('ASD')
+      }
+      else if( toggle==='ASD'){
+        setPaspirtukai(paspirtukai=>[...paspirtukai].sort((a,b)=> a.lastUseTime.localeCompare(b.lastUseTime)))
+
+        setToggle('DSC')
+        
+      }
+      else if( toggle==='DSC'){
+        setPaspirtukai(copy)
+
+        setToggle('default')
+        
+      }
+    
+      }
+    const handleToggle2=()=>{
+      let copy = [...paspirtukaiCopy]
+      if(toggle2==='default'){
+        setPaspirtukai(paspirtukai=>[...paspirtukai].sort((a,b)=> b.bendrasKM - a.bendrasKM))
+        setToggle2('ASD')
+      }
+      else if( toggle2==='ASD'){
+        setPaspirtukai(paspirtukai=>[...paspirtukai].sort((a,b)=> a.bendrasKM - b.bendrasKM))
+
+        setToggle2('DSC')
+        
+      }
+      else if( toggle2==='DSC'){
+        setPaspirtukai(copy)
+
+        setToggle2('default')
+        
+      }
+      
+
+
+      
+      }
+
+  
     const sortinimas=()=>{
       console.log(sort);
       setPaspirtukai(paspirtukai=>[...paspirtukai].sort((a,b)=> b.bendrasKM - a.bendrasKM))
@@ -122,7 +190,7 @@ function App() {
     <div className="app">
       <div className='top'>
 
-      <h1>CRUD</h1>
+      <h1>KOLT</h1>
       
       </div>
       <div className='main'>
@@ -142,7 +210,7 @@ function App() {
           />
       
           </div>
-        <Read filter={filter} setFilter={setFilter} show={show}paspirtukai={paspirtukai} deleteA={deleteA}></Read>
+        <Read filter={filter} handleToggle={handleToggle}handleToggle2={handleToggle2} setFilter={setFilter} show={show}paspirtukai={paspirtukai} deleteA={deleteA}></Read>
 
       {/* <Tablet zoo={zoo}></Tablet> */}
       </div>
