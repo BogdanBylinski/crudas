@@ -8,6 +8,10 @@ import './crud.scss';
 import "./Components/CRUD/Table.scss";
 import getNewId from './StaticComponents/id';
 import randLetters from './StaticComponents/randLetters';
+import { faGear} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
 
 // import Tablet from './Components/CRUD/Table'
 
@@ -20,6 +24,7 @@ function App() {
     const [filter, setFilter] = useState('')
     const [toggle, setToggle]= useState('default')
     const [toggle2, setToggle2]= useState('default')
+    const [ijungimas, setIjungimas]=useState('disabled')
     
 
 
@@ -157,16 +162,19 @@ function App() {
       }
       else if( toggle2==='DSC'){
         setPaspirtukai(copy)
-
         setToggle2('default')
-        
       }
-      
-
-
-      
       }
 
+    const ijungiam=()=>{
+      if(ijungimas==='disabled'){
+        setIjungimas('enabled')
+        console.log(ijungimas);
+      }else if (ijungimas ==='enabled'){
+        setIjungimas('disabled')
+        console.log(ijungimas);
+      }
+    }
   
     const sortinimas=()=>{
       console.log(sort);
@@ -197,9 +205,18 @@ function App() {
 
       <div className='content'>
         <div className='main-top' >
+          <div className='left'>
 
         <Create create={create}></Create>
-        
+        <div className='gear'>
+        <FontAwesomeIcon onClick={ijungiam} icon={faGear} />
+        <div className={ijungimas}>
+          <input type="date" name="" id="" />
+          <input type="text" name="" id="" />
+        </div>
+        </div>
+          </div>
+
        
         <input id="filter"
           name="filter"
