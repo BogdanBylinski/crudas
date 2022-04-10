@@ -25,7 +25,7 @@ function App() {
     const [toggle, setToggle]= useState('default')
     const [toggle2, setToggle2]= useState('default')
     const [ijungimas, setIjungimas]=useState('disabled')
-    
+    const [laikas, setLaikas] = useState(0)
 
 
     useEffect(()=>{
@@ -35,9 +35,13 @@ function App() {
         setPaspirtukai([]);
         localStorage.setItem('paspirtukaiCopy',JSON.stringify([]))
         setPaspirtukaiCopy([]);
+        const current = new Date();
+        setLaikas(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
       }else{
         setPaspirtukai(JSON.parse(data))
         setPaspirtukaiCopy(JSON.parse(data))
+        const current = new Date();
+        setLaikas(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
       }
     },[])
     useEffect(()=>{
@@ -175,6 +179,9 @@ function App() {
         console.log(ijungimas);
       }
     }
+    const isjungti=()=>{
+      setIjungimas('disabled')
+    }
   
     const sortinimas=()=>{
       console.log(sort);
@@ -207,7 +214,7 @@ function App() {
         <div className='main-top' >
           <div className='left'>
 
-        <Create create={create}></Create>
+        <Create laikas={laikas}isjungti={isjungti} create={create}></Create>
         <div className='gear'>
         <FontAwesomeIcon onClick={ijungiam} icon={faGear} />
         <div className={ijungimas}>

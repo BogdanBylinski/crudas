@@ -1,30 +1,34 @@
 import { useState } from "react"
 import randLetters from "../../StaticComponents/randLetters";
 
-function Create({create}){
+function Create({isjungti,create, laikas}){
 
     
     const [registrationCode, setRegistrationCode]=useState(randLetters());
     const [bendrasKM, setBendrasKM]=useState(0);
     const [isAlive, setIsAlive]=useState(0);
-    const [lastUseTime, setLastUseTime]=useState('brand new')
+    const [lastUseTime, setLastUseTime]=useState(new Date())
     const [km, setKM]=useState(0)
 
     
     const handleCreate=()=>{
+        const current = new Date();
+        setLastUseTime(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
+
         const data = {
             registrationCode: registrationCode,
             bendrasKM:bendrasKM,
             isAlive: isAlive,
-            lastUseTime:lastUseTime,
+            lastUseTime:laikas,
             km:km
         }
         create(data)
         setRegistrationCode();
         setBendrasKM(0)
         setIsAlive(0);
-        setLastUseTime('brand new')
+        setLastUseTime(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
         setKM(0)
+        isjungti()
     }
     // const handleInput=(e,d)=>{
     //     switch(d){
