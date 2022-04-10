@@ -5,7 +5,7 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons'
 import { faPenToSquare} from '@fortawesome/free-regular-svg-icons'
 import "./Table.scss";
 import { useEffect, useState } from "react";
-export default function Read({paspirtukai, deleteA,show}){
+export default function Read({paspirtukai, deleteA,show, filter, setFilter}){
     const [suma, setSuma]=useState(0)
 const handleDelete=(id)=>{
     deleteA(parseInt(id));
@@ -22,6 +22,7 @@ useEffect(()=>{
         }else{setSuma(0)}
     
 })
+
 
     return (
         <div className="list" >
@@ -40,7 +41,7 @@ useEffect(()=>{
                             </thead>
                             <tbody >
 
-                               {paspirtukai.map((e,i) => <tr key={i}>
+                               {paspirtukai.filter(e => e.registrationCode.includes(filter.toUpperCase()) || filter === '').map((e,i) => <tr key={i}>
                                    <td className="trBody">{e.registrationCode}</td>
                                    <td className="trBody">{e.bendrasKM+' km'}</td>
                                    <td className="trBody">{e.lastUseTime}</td>
@@ -54,11 +55,11 @@ useEffect(()=>{
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>
+                                        <td id="pasp">
                                            
                                             Paspirtuku skaicius: {paspirtukai.length} 
                                         </td>
-                                        <td>
+                                        <td id='bendr'>
 
                                              Bendras nuvaziuotu km skaicius: {suma}
                                         </td>

@@ -70,6 +70,7 @@ table{
     // border: 2px solid red;
     // border-radius: 50px;
     border-radius: 20px; 
+    width: 100%;
     border-spacing: 0px;
     padding: 20px;
     padding-bottom: 20px;
@@ -90,12 +91,17 @@ thead {
         margin-bottom: 10px;
         th{
             width: 20%;
+            color: rgba(0, 0, 0, 0.705);
+            word-wrap:break-word;
             font-size: 19px;
             @media  (max-width: 900px){
                 font-size: 15px}
-                @media  (max-width: 580px){
+                @media  (max-width: 620px){
                     font-size: 10px};
-                } 
+                
+                @media  (max-width: 478px){
+                    font-size: 6px;
+                } }
             }
             th:first-of-type{
                 border-radius: 10px 0px 0px 10px;
@@ -115,10 +121,10 @@ thead {
                     @media  (max-width: 900px){
                         font-size:10px;
                     };
-                    @media  (max-width: 500px){
+                    @media  (max-width: 620px){
                         font-size:8px;
                     };
-                    @media  (max-width: 400px){
+                    @media  (max-width: 478px){
                         font-size:6px;
                     };
                     span{
@@ -147,9 +153,16 @@ thead {
                 line-height:10px;
                 text-indent:-99999px;
             }
+            & tr:last-of-type td{
+                border-bottom: 2px solid red;
+                padding: 20px;
+                }
         }
         
         #lastRow {
-            background-color: transparent;;
+            background-color: transparent;
+            
         }
-        
+        #pasp, #bendr{
+            padding-top: 30px
+        }

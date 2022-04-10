@@ -16,6 +16,7 @@ function App() {
     const [paspirtukai, setPaspirtukai] = useState([]);
     const [modal, setModal] = useState(0)
     const [sort, setSort]= useState([])
+    const [filter, setFilter] = useState('')
     
 
 
@@ -122,12 +123,26 @@ function App() {
       <div className='top'>
 
       <h1>CRUD</h1>
+      
       </div>
       <div className='main'>
 
       <div className='content'>
+        <div className='main-top' >
+
         <Create create={create}></Create>
-        <Read show={show}paspirtukai={paspirtukai} deleteA={deleteA}></Read>
+        
+       
+        <input id="filter"
+          name="filter"
+          placeholder='Search'
+          type="text"
+          value={filter}
+          onChange={event => setFilter(event.target.value)}
+          />
+      
+          </div>
+        <Read filter={filter} setFilter={setFilter} show={show}paspirtukai={paspirtukai} deleteA={deleteA}></Read>
 
       {/* <Tablet zoo={zoo}></Tablet> */}
       </div>
