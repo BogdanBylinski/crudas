@@ -81,6 +81,9 @@ th, td {
     text-align: center;
     // border-radius: 50px;
     font-size: 20px;
+    i{
+        cursor: pointer;
+    }
     
 }
 thead {
@@ -108,6 +111,9 @@ thead {
             }
             th:last-of-type{
                 border-radius: 0px 10px 10px 0px;
+            }
+            svg{
+                cursor: pointer;
             }
             
         }
