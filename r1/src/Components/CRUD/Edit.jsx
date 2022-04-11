@@ -10,11 +10,10 @@ function Edit({edit, paspirtukas, cancel, }){
     const [isAlive, setIsAlive]=useState(1);
     const [lastUseTime, setLastUseTime]=useState('brand new')
     const [date, setDate]=useState('')
-    const [memo, setMemo]=useState(0)
 
 
     useEffect(()=>{
-        setType(paspirtukas.type);
+        setType(paspirtukas.registrationCode);
         setBendrasKM(paspirtukas.bendrasKM);
         setIsAlive(paspirtukas.isAlive);
         setLastUseTime(paspirtukas.lastUseTime);
@@ -24,11 +23,11 @@ function Edit({edit, paspirtukas, cancel, }){
 
     const handleEdit=()=>{
         const data = {
-            type: type,
+            // type: type,
             isAlive: isAlive,
             lastUseTime:lastUseTime,
-            bendrasKM:bendrasKM,
-            km:km
+            bendrasKM:Math.round(bendrasKM * 100) / 100,
+            km:Math.round(km * 100) / 100
             
         }
         
@@ -36,7 +35,7 @@ function Edit({edit, paspirtukas, cancel, }){
         setType('');
         setIsAlive(1);
         // setLastUseTime('brand new');
-        setBendrasKM(bendrasKM=>(bendrasKM+km));
+        setBendrasKM(bendrasKM=>((Math.round(bendrasKM * 100) / 100)+km));
         setLastUseTime(date)
 
 
@@ -71,27 +70,34 @@ function Edit({edit, paspirtukas, cancel, }){
         <div className="modal">
 
         <div className="editas">
-            <h2>Create</h2>
+            <h2>Paspirtuko redagavimas</h2>
             <div className="form">
             <div className="input">
-                <label htmlFor="">KM: </label>
+                Reg NR. 
+                <p>{type}</p>
+            </div>
+            <div className="input">
+                Bendras KM:
+                <p>{bendrasKM}</p>
+            </div>
+            
+            <div className="input">
+                <label htmlFor="">Nuvaziuota KM siandien: </label>
                 <input  onChange={(e)=>Number(e.target.value)? handleInput(e,'KM'):''} value={km} type="text"  placeholder="0.00" />
                 
             </div>
             <div className="input">
+                Naudojimo data:
+                <p>{lastUseTime}</p>
+            </div>
+            <div className="input">
                 <label htmlFor="">Last use time:</label>
                 <input  onChange={(e)=>handleInput(e,'Last use time?')} type="date" name="" id="" value={date} />
-                {/* <select defaultValue={color}onChange={(e)=>handleInput(e,'color')} name="" id="">
-                    <option value="selected" >Select color</option>
-                    <option value="blue">Blue</option>
-                    <option value="red">Red</option>
-                    <option value="green">Green</option>
-                    <option value="black">Black</option>
-                    <option value="yellow">Yellow</option>
-                </select> */}
+               
             </div>
             <div className="input freeOrNot">
-                <label  htmlFor="">Uzimtumas: {isAlive===1? 'Uzimtas':'Laisvas'}</label>
+                <label  htmlFor="">Uzimtumas: </label>
+                <p>{isAlive===1? 'Uzimtas':'Laisvas'}</p>
                 <input className="toggle" type="checkbox"  checked={isAlive} onChange={(e)=>handleInput(e,'isAlive')} />
             </div>
             <div className="input btn">

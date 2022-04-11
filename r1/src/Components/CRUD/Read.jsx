@@ -17,7 +17,7 @@ useEffect(()=>{
         if(paspirtukai.length!==0){
 
             paspirtukai.forEach(e=>{
-                sums = e.bendrasKM+sums
+                sums = e.bendrasKM + sums
                 setSuma(suma=>sums)
             })
         }else{setSuma(0)}
@@ -44,7 +44,7 @@ useEffect(()=>{
 
                                {paspirtukai.filter(e => e.registrationCode.includes(filter.toUpperCase()) || filter === '').map((e,i) => <tr key={i}>
                                    <td className="trBody">{e.registrationCode}</td>
-                                   <td className="trBody">{(e.bendrasKM).toFixed(2)+' km'}</td>
+                                   <td className="trBody">{(e.bendrasKM)+' km'}</td>
                                    <td className="trBody">{e.lastUseTime}</td>
                                    <td className="trBody">{e.isAlive===1? <div className="unavailable">Uzimtas</div>:<div className="available">Laisvas</div>}</td>
                                    <td className="trBody fl">
@@ -62,7 +62,7 @@ useEffect(()=>{
                                         </td>
                                         <td id='bendr'>
 
-                                             Bendras nuvaziuotu km skaicius: {suma.toFixed(2)}
+                                             Bendras nuvaziuotu km skaicius: {Math.round(suma * 100) / 100}
                                         </td>
                                     </tr>
                                         </tbody>

@@ -8,7 +8,7 @@ import './crud.scss';
 import "./Components/CRUD/Table.scss";
 import getNewId from './StaticComponents/id';
 import randLetters from './StaticComponents/randLetters';
-import { faGear} from '@fortawesome/free-solid-svg-icons'
+import { faBackspace, faGear} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -26,6 +26,7 @@ function App() {
     const [toggle2, setToggle2]= useState('default')
     const [ijungimas, setIjungimas]=useState('disabled')
     const [laikas, setLaikas] = useState(0)
+    const [kilometrai, setKilometrai] = useState(0)
 
 
     useEffect(()=>{
@@ -198,7 +199,13 @@ function App() {
       setPaspirtukai(paspirtukai=>[...paspirtukai].sort((a,b)=> a.lastUseTime.localeCompare(b.lastUseTime)))
       console.log(paspirtukai);
     }
-
+const kilai=(e)=>{
+  setKilometrai(e.target.value)
+  
+}
+const dataa=(e)=>{
+  setLaikas(e.target.value)
+}
 
   return (
     <>
@@ -214,12 +221,14 @@ function App() {
         <div className='main-top' >
           <div className='left'>
 
-        <Create laikas={laikas}isjungti={isjungti} create={create}></Create>
+        <Create dataa={setLaikas}laikas={laikas}kilometrai={kilometrai}kilai={setKilometrai}isjungti={isjungti} create={create}></Create>
         <div className='gear'>
         <FontAwesomeIcon onClick={ijungiam} icon={faGear} />
         <div className={ijungimas}>
-          <input type="date" name="" id="" />
-          <input type="text" name="" id="" />
+          <p>Paskutinio naudojimo data</p>
+          <input value={laikas}onChange={dataa} type="date" name="" id="" />
+          <p>Kilometru skaicius</p>
+          <input onChange={kilai} value={kilometrai} type="number" step={0.01}  placeholder="0.00"/>
         </div>
         </div>
           </div>

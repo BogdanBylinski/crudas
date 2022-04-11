@@ -1,7 +1,7 @@
 import { useState } from "react"
 import randLetters from "../../StaticComponents/randLetters";
 
-function Create({isjungti,create, laikas}){
+function Create({dataa,isjungti,create, laikas,kilometrai, kilai}){
 
     
     const [registrationCode, setRegistrationCode]=useState(randLetters());
@@ -13,11 +13,11 @@ function Create({isjungti,create, laikas}){
     
     const handleCreate=()=>{
         const current = new Date();
-        setLastUseTime(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
+        // setLastUseTime(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
 
         const data = {
             registrationCode: registrationCode,
-            bendrasKM:bendrasKM,
+            bendrasKM:Math.round(+kilometrai * 100) / 100,
             isAlive: isAlive,
             lastUseTime:laikas,
             km:km
@@ -26,8 +26,10 @@ function Create({isjungti,create, laikas}){
         setRegistrationCode();
         setBendrasKM(0)
         setIsAlive(0);
-        setLastUseTime(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
+        // setLastUseTime(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
         setKM(0)
+        kilai(0)
+        dataa(`${current.getFullYear()}-0${current.getMonth()+1}-${current.getDate()}`)
         isjungti()
     }
     // const handleInput=(e,d)=>{
