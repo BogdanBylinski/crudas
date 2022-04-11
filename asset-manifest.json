@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/crudas/static/css/main.41fde64b.css",
+    "main.css": "/crudas/static/css/main.692a123f.css",
     "main.js": "/crudas/static/js/main.56a927d5.js",
     "static/js/787.62d5f28d.chunk.js": "/crudas/static/js/787.62d5f28d.chunk.js",
     "index.html": "/crudas/index.html",
-    "main.41fde64b.css.map": "/crudas/static/css/main.41fde64b.css.map",
+    "main.692a123f.css.map": "/crudas/static/css/main.692a123f.css.map",
     "main.56a927d5.js.map": "/crudas/static/js/main.56a927d5.js.map",
     "787.62d5f28d.chunk.js.map": "/crudas/static/js/787.62d5f28d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.41fde64b.css",
+    "static/css/main.692a123f.css",
     "static/js/main.56a927d5.js"
   ]
 }
