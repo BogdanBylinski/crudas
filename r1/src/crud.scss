@@ -398,11 +398,14 @@ body{
                     flex-direction: row;
                     align-items: center;
                     justify-content: space-between;
-                    input[type='text']{
+                    input[type="number"]{
                         max-width: 100px;
                         background-color: transparent;
                         border:2px solid white;
                         border-radius: 50px;
+                        color: white;
+                        outline: none;
+                        padding-left: 10px;
                      }
                      input::placeholder{
                          padding-left: 10px;
