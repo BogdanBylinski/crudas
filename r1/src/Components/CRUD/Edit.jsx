@@ -83,7 +83,7 @@ function Edit({edit, paspirtukas, cancel, }){
             
             <div className="input">
                 <label htmlFor="">Nuvaziuota KM siandien: </label>
-                <input  onChange={(e)=>Number(e.target.value)? handleInput(e,'KM'):''} value={km} type="text"  placeholder="0.00" />
+                <input  onChange={(e)=>handleInput(e,'KM')} value={km} type="number"step={0.01}  placeholder="0.00" />
                 
             </div>
             <div className="input">
